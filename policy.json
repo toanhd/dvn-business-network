@@ -1,0 +1,30 @@
+{
+ identities: [
+        { role: { name: "member", mspId: "org1"
+            }
+        },
+        { role: { name: "member", mspId: "org2"
+            }
+        },
+        { role: { name: "admin", mspId: "org3"
+            }
+        }
+    ],
+ policy: {
+        "2-of": [
+            {
+                "signed-by": 2
+            },
+            {
+                "1-of": [
+                    {
+                        "signed-by": 0
+                    },
+                    {
+                        "signed-by": 1
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -29,6 +29,7 @@ abstract participant Member identified by mId {
 }
 participant Student extends Member {
   o Integer StdID
+  o Integer IntakeYear
 }
 participant Lecturer extends Member {
   o Integer LecID
@@ -40,6 +41,7 @@ asset Grade identified by TranscriptID {
   o String CourseID
   o String CourseName
   o Integer Credit
+  o Integer Semester
   o Double GradeVal
   --> Lecturer lecturer //tham chieu den doi tuong Lecturer
 }
@@ -58,6 +60,7 @@ transaction Grading {
   o String CourseName
   o Integer Credit
   o Double GradeVal
+  o Integer Semester
   o Student student
   o Lecturer lecturer
 }

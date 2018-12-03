@@ -1,0 +1,13 @@
+query queryStudent {
+  description: "Searching for student by IntakeYear"
+  statement:
+    SELECT org.dvn.com.Student
+    WHERE (IntakeYear == _$IntakeYear)
+}
+
+query queryLecturer {
+  description: "Searching for lecturer by LecID"
+  statement:
+    SELECT org.dvn.com.Lecturer
+    WHERE (LecID == _$LecID)
+}
