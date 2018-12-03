@@ -19,52 +19,55 @@
 namespace org.dvn.com
 
 concept BasicInfo { //concept
-  o String Name
-  o String School
-  o DateTime DoB
+  o String name
+  o String school
+  o DateTime dob
 }
 abstract participant Member identified by mId {
   o String mId 
   o BasicInfo info
 }
 participant Student extends Member {
-  o Integer StdID
-  o Integer IntakeYear
+  o Integer stdID
+  o Integer intakeYear
 }
 participant Lecturer extends Member {
-  o Integer LecID
+  o Integer lecID
 }
 
-asset Grade identified by TranscriptID {
-  o String TranscriptID
-  o DateTime IssueDate
-  o String CourseID
-  o String CourseName
-  o Integer Credit
-  o Integer Semester
-  o Double GradeVal
-  --> Lecturer lecturer //tham chieu den doi tuong Lecturer
+asset Grade identified by transcriptID {
+  o String transcriptID
+  o DateTime issueDate
+  o String courseID
+  o String courseName
+  o Integer credit
+  o Integer semester
+  o Double gradeVal
+  //--> Student student  //tham chieu den doi tuong Student
+  --> Lecturer lecturer //tham chieu den doi tuong Lecture
 }
 
-  asset Transcript identified by TranscriptID {
-  o String TranscriptID
-  o Transcript[] grades // array of grades
-  --> Student student   //tham chieu den doi tuong Student
-  // --> Lecturer lecturer //tham chieu den doi tuong Lecturer
+  asset Transcript identified by transcriptID {
+  o String transcriptID
+  o Grade[] gradesList // array of grades
+  --> Student student  //tham chieu den doi tuong Student
+  //--> Lecturer lecturer //tham chieu den doi tuong Lecturer
 }
 
 transaction Grading {
-  o DateTime Date
-  o String TranscriptID
-  o String CourseID
-  o String CourseName
-  o Integer Credit
-  o Double GradeVal
-  o Integer Semester
-  o Student student
-  o Lecturer lecturer
+  o DateTime date
+  o String transcriptID
+  o String courseID
+  o String courseName
+  o Integer credit
+  o Double gradeVal
+  o Integer semester
+  //o Student student
+  //o Lecturer lecturer
+  o String stdMemberID
+  o String lecMemberID
 }
 event GradingEvent {
-  o Grading GradingTx
+  o Grading gradingTransaction
   o String action
 }
